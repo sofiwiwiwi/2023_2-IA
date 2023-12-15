@@ -1,0 +1,143 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[spanish]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage{array}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+\usepackage{float}
+
+\begin{document}
+\title{Inteligencia Artificial \\ \begin{Large}Estado del Arte: Problema Risk-constrained Cash-in-Transit Vehicle Routing Problem\end{Large}}
+\author{Sof\'ia Riquelme}
+\date{27 de septiembre de 2023}
+\maketitle
+
+%--------------------No borrar esta secci\'on--------------------------------%
+\section*{Evaluaci\'on}
+
+\begin{tabular}{ll}
+Resumen (5\%): & \underline{\hspace{2cm}} \\
+Introducci\'on (5\%):  & \underline{\hspace{2cm}} \\
+Definici\'on del Problema (10\%):  & \underline{\hspace{2cm}} \\
+Estado del Arte (35\%):  & \underline{\hspace{2cm}} \\
+Modelo Matem\'atico (20\%): &  \underline{\hspace{2cm}}\\
+Conclusiones (20\%): &  \underline{\hspace{2cm}}\\
+Bibliograf\'ia (5\%): & \underline{\hspace{2cm}}\\
+ &  \\
+\textbf{Nota Final (100\%)}:   & \underline{\hspace{2cm}}
+\end{tabular}
+%---------------------------------------------------------------------------%
+\vspace{2cm}
+
+\begin{abstract}
+En las últimas décadas, el análisis de las redes de transporte ha adquirido una importancia significativa en la economía global. Entre los factores que provocan pérdidas económicas notables, se destacan los \textit{``Cash in transit robberies''} que implican el robo de vehículos que transportan objetos de valor. Este documento tiene como objetivo presentar, definir y modelar el \textit{``Risk-constrained Cash-in-Transit Vehicle Routing Problem''}, una variante del \textit{``Vehicle Routing Problem''} que aborda específicamente la optimización de rutas para vehículos encargados de la recolección de dinero u objetos valiosos, como joyas.
+\end{abstract}
+
+\section{Introducci\'on}
+El transporte es un aspecto sumamente relevante en la economía mundial. Es más, el transporte de efectivo y objetos de valor continúa siendo un problema interesante de estudiar en la actualidad, dado el riesgo de un robo. Una de las principales razones por las cuales los robos de objetos de valor en transportes (\textit{Cash in transit robberies}, abreviado como \textit{CIT robberies}) son tan comunes, es por la falta de análisis de seguridad y riesgo durante el planeamiento de las rutas de los vehículos~\cite{hepenstal2010concentration}. En Sudáfrica, durante los años 2012 y 2013, los robos CIT fueron los segundos más realizados luego de ataques a cajeros, con 145 ocurrencias \cite{thobane2014criminal}. Asimismo en Inglaterra más de 500 billones de euros son transportados por año \cite{talarico2015metaheuristics} y solo en Londres se perdieron aproximadamente 1.2 millones de euros durante los años 2007/2008 debido a este tipo de robos \cite{hepenstal2010concentration}. Tomando en cuenta la importancia que tiene el análisis de las rutas a la hora de transportar objetos de riesgo, se presenta el estudio de \textit{Risk-constrained Cash-in-Transit Vehicle Routing Problem}, abreviado como RCVRP. 
+
+En este trabajo se define el problema a estudiar, indicando sus variables y restricciones. Posteriormente se revisará lo estudiado históricamente de este problema, incluyendo las técnicas y algoritmos que se han utilizado para resolverlo. Luego se define el modelo matemático de este, para finalmente concluir respecto al trabajo realizado y analizar que se podrá realizar a futuro.
+
+\section{Definici\'on del Problema}
+El problema a estudiar consiste en definir rutas para el transporte que minimicen el riesgo al tener que transportar objetos de valor. El problema consta con varios clientes, con ubicación conocida que tienen una demanda de dinero que debe ser satisfecha. Esta demanda es una demanda de recolección, es decir, a medida que avanza el vehículo, lleva más dinero. A la vez se tiene una cantidad de vehículos que salen desde un depósito, deben satisfacer la demanda de los clientes, y retornar al depósito. Para este problema, el riesgo se define como un valor proporcional a la cantidad de dinero transportado y al tiempo o distancia recorrida por el vehículo que transporta dicho dinero. De esta forma, para minimizar el riesgo se debe minimizar la distancia recorrida por los vehículos.
+
+RCVRP es una variante del problema general VRP (\textit{Vehicle Routing Problem}), el cual consiste en una serie de vehículos que deben satisfacer demandas conocidas de clientes en ubicaciones conocidas. El objetivo del problema es encontrar rutas que minimicen el costo y satisfagan las demandas de los clientes. Este problema abarca tanto recolecciones como entregas. A partir de este problema surge RCVRP y otras variantes interesantes.
+
+La principal variante es CVRP, (\textit{Capacitaded VRP}), donde se impone una capacidad para cada vehículo. Todo el resto de las variantes básicas interesantes de este problema son una extensión de este \cite{toth2002overview}.
+
+Una de estas variantes es VRPB (\textit{VRP with Backhauls}). Este problema consiste en una extensión de CVRP donde hay retiro y entregas hacia clientes. Las cantidades de entrega y retiro son conocidas. Lo que hace esta variante interesante es que todas las entregas deben ser hechas antes que los retiros, ya que los vehículos se cargan desde la parte trasera y no es viable reordenar las cargas de los vehículos mientras están en ruta \cite{joetschalckx1989vehicle}.
+
+De la misma manera, otra variante es VRPTW (\textit{VRP with Time Windows}). Esta es una extensión de CVRP donde cada cliente está asociado con un intervalo de tiempo, llamado una ventana de tiempo. Esta ventana es conocida para cada cliente. Cada vehículo debe atender al cliente durante esa ventana de tiempo, y no se puede atender ni antes ni después. Sin embargo, algunos modelos permiten un leve tiempo de espera en caso de que el vehículo llegue antes \cite{ombuki2006multi}. 
+
+Asimismo, existe la mezcla de RCVRP y VRPTW, la cual es RCVRPTW (\textit{Risk-constrained cash-in-transit vehicle routing problem with time window constraints}). Esta consiste en juntar las restricciones de RCVRP y VRPTW, dando origen a un problema que involucra riesgo y además ventanas de tiempo. \cite{talarico2013risk}
+
+La dificultad principal de VRP y sus variantes, es que es un problema NP-hard\cite{lenstra1981complexity}, por lo que obtener algoritmos exactos para resolverlo no es una opción viable.  
+\newpage
+\section{Estado del Arte}
+\subsection{Historia del Problema}
+La primera introducción a este problema fue dada por Dantzig \& Ramser en 1959, llamada \textit{``Truck Dispatching Problem''} (Problema de despacho de camiones) \cite{braekers2016vehicle}. Este problema se plantea como una extensión de \textit{The Traveling Salesman} (TSP), y trataba principalmente de cómo un conjunto de camiones podían satisfacer la demanda de bencina de un número de bombas, con una distancia mínima de viaje desde un depósito. \cite{dantzig1959truck}. Luego en 1964, Clarke \& Wright generalizaron este problema, no solo a situaciones de bencina, sino que a cualquier situación de despachar a clientes en ubicaciones alrededor de un depósito central. Esta generalización es la que dio origen al problema que se conoce hoy como VRP. Clarke \& Wright también dan origen a una de las heurísticas más utilizadas en este problema.  Asimismo, otra técnica comúnmente utilizada para resolver problemas de VRP, es \textit{Tabu Search}\cite{braysy2004evolutionary}. Esta técnica consiste en una búsqueda local, en la cual se busca una posible solución para el problema y luego se analizan soluciones similares (vecinas) con la esperanza de que se pueda mejorar. De la misma forma los algoritmos genéticos son muy utilizados también, para VRP y muchas de sus variantes.
+
+Las variantes que han ido surgiendo desde entonces difieren mucho del problema original, dado que se imponen más restricciones con el objetivo de asemejarse más a la vida real\cite{yan2012model}. Un ejemplo de esto son las variantes mencionadas anteriormente, donde se impone una capacidad límite a los vehículos, o una ventana de tiempo a los clientes. Todas estas son características que complejizan el problema, pero hacen que se acerque más a lo que puede suceder. 
+
+\subsection{Métodos y técnicas utilizadas}
+Debido a lo complejo que se ha convertido el problema, y el hecho de que VRP es un problema NP-hard \cite{lenstra1981complexity}, los algoritmos exactos sólo funcionan para instancias pequeñas del problema. Es por esto que muchas de las técnicas que se aplican son heurísticas, dada la complejidad computacional del problema.
+
+\subsubsection{Algoritmos Genéticos}
+Una de las técnicas utilizadas para resolver este problema, son los algoritmos genéticos. Este algoritmo comienza con una población inicial de soluciones candidatas al problema, y se evalúan con una \textit{fitness function} para evaluar su calidad. Luego se hace una selección de esa población inicial y se selecciona la siguiente generación de soluciones. Una de las limitaciones que tiene esta técnica, es que puede llegar a ser muy costosa computacionalmente, dado que debe evaluar una gran cantidad de veces la \textit{fitness funcion} para generar las soluciones \cite{ge2023genetic}. 
+
+\subsubsection{Búsqueda Tabú}
+La Búsqueda Tabú o \textit{Tabu Search} es una técnica de búsqueda local, con ``memoria de corto plazo'', que mejora una solución candidata buscando soluciones vecinas con una lista tabú, de soluciones prohibidas, para evitar quedarse atascado en un solo vecindario. Esta técnica se ve fuertemente afectada por la solución inicial, es decir, el \textit{output} del algoritmo puede cambiar significativamente al cambiar la solución candidata inicial. De la misma forma, el largo escogido para la lista tabú también afecta de gran manera el transcurso del algoritmo. \cite{xu2022model}
+\subsubsection{Clarke-Wright}
+Este método es un método heurístico consiste en mejorar una solución candidata inicial utilizando alguna técnica de búsqueda local. Esta técnica comienza con una solución base donde todos los nodos son visitados por un vehículo, por lo que crea una ruta inicial por cada cliente. Luego, se calcula el ahorro de combinar dos de las rutas creadas, y se combinan las rutas que generen una mayor cantidad de ahorro. Esto itera hasta que no se puedan hacer mejoras sin que se violen las restricciones. Al igual que \textit{Tabu Search}, su limitación es la elección de la solución candidata inicial\cite{talarico2015metaheuristics}\cite{talarico2017large}.
+
+\subsubsection{Actualidad}
+Durante la última década, Luca Talarico ha realizado siete metaheurísticas relevantes a este problema. Dentro de las que obtienen mejores resultados, está la llamada p-TLK. Esta se basa en la heurística Lin-Kerninghan \cite{helsgaun2000effective} y se le aplica una variante donde se divide el procedimiento para obtener una solución viable. Luego se le aplica una perturbación para salir del óptimo local. De la misma manera, está la metaheurística m-CWG, la cual es una variación de la heurística propuesta por Clarke \& Wright (CWg) mencionada anteriormente. Cada vez que se reinicia, la heurística CWg puede introducir aleatoriedad, por lo que la búsqueda local explora diferentes áreas del espacio de solución. Por último se tiene ACO-LNS. En esta metaheurística se utiliza una heurística de hormiga para el TSP propuesta por Dorigo \& Gambardella para encontrar una solución inicial. Luego se aplican las restricciones y se llega a una solución viable utilizando búsqueda local y una división del problema. Al igual que en las técnicas anteriores, se ocupa diversificación para salir de los óptimos locales, sin embargo, para esta técnica se utilizan dos métodos de diversificación: primero se perturba la solución actual y se itera sobre eso. Si no se obtienen mejoras se utiliza el segundo método, donde se genera una nueva solución inicial, reaplicando la optimización hormiga, y luego la división del problema \cite{talarico2017large}. A continuación se muestra una tabla de comparación de las metaheurísticas propuestas por Luca Talarico. 
+
+\begin{table}[H]
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+    Test Set    & m-CWg  & m-NNg  & p-CWg  & p-NNg  & m-TNNg & p-TNNg & p-TLK  & aco-Ins \\ \hline
+    avg avg GAP & 2.76\% & 4.57\% & 3.30\% & 4.18\% & 3.87\% & 3.66\% & 2.60\% & 2.46\%  \\ \hline
+    \end{tabular}
+    \caption{Tabla de comparación del promedio del GAP promedio de las metaheurísticas \cite{talarico2017large}}
+    \label{fig:my-table}
+\end{table}
+\newpage
+\section{Modelo Matem\'atico}
+Para este problema se tiene que todas las localizaciones de tanto el depósito como de los nodos de recolección se entregan en coordenadas $(x,y)$. Sin embargo, para el modelo es más simple considerar un grafo con todos los nodos y el depósito. El grafo es completamente conexo. 
+A continuación se presenta el modelo matemático basado en el modelo de Talarico \cite{talarico2015metaheuristics}.
+\subsection{Constantes}
+\begin{itemize}
+    \item $A =$ conjunto de aristas del grafo
+    \item $N =$ conjunto de nodos donde se deben hacer recolecciones de dinero
+    \item $d_i =$ demanda del nodo $i$. 
+    \item $c_{ij} =$ distancia desde el nodo $i$ al nodo $j$
+    \item $M =$ Representa la capacidad del vehículo
+    \item $T =$ Representa el riesgo máximo permitido
+\end{itemize}
+Para mayor comodidad, se define el nodo inicial como $s$ y el final como $e$.
+
+\subsection{Variables}
+\begin{itemize}
+    \item $D^r_i=$ cantidad de dinero transportada por el vehículo cuando sale del nodo $i$ en la ruta $r$
+    \item $R_i^r=$ riesgo del vehículo cuando llega al nodo $i$ por la ruta $r$
+    \item Variable de decisión:
+    \begin{equation*}
+        x^r_{ij}= 
+        \begin{cases}
+            1 & \text{si el arco $(i,j)$ es recorrido por el vehículo en la ruta r}\\
+            0 & \text{en otro caso}
+        \end{cases}
+    \end{equation*}
+\end{itemize}
+
+\subsection{Función objetivo}
+$$\text{minimizar} f = \sum_{r \in N}\sum_{(i,j) \in A} c_ij \cdot x^r_{ij}$$
+La función objetivo minimiza la distancia total recorrida en todas las rutas.
+\subsection{Restricciones}
+\begin{align}
+    & \sum_{j\in N} x^r_{sj} = \sum_{j\in N} x^r_{ie}, \hspace{9cm} \forall r\in N\\
+    &\sum_{j \in N}x_{sj}^1 = 1\\
+    &\sum_{i \in N}x_{ie}^r \geq \sum_{j \in N}x_{sj}^{r + 1} \hspace{9cm} \forall r\in N \backslash \{s\}\\
+    &\sum_{i \in N \backslash \{s\}}\sum_{j \in N}x_{ij}^r = 1 \hspace{9cm} \forall i\in N \\
+    &\sum_{h \in N \backslash \{e\}}x_{hj}^r - \sum_{k \in N \backslash \{s\}}x_{jk}^r = 0 \hspace{6.7cm} \forall j\in N, \forall r \in N\\
+    &D^r_s = 0 \hspace{11cm} \forall r\in N\\
+    & D^r_j \geq D^r_i + d_j - (1 - x^r_{ij}) \cdot M \hspace{6cm} \forall (i,j) \in A, \forall r \in N\\
+    & 0 \leq D_i^r \leq M \hspace{9cm} \forall i\in N, \forall r\in N\\
+    & R^r_s = 0 \hspace{11cm} \forall r \in N\\
+    & R^r_j \geq R^r_i + D_r^i \cdot c_{ij} - (1 - x^r_{ij}) \cdot T \hspace{5.4cm} \forall (i,j) \in A, \forall r \in N\\
+    &0 \leq R_i^r \leq T \hspace{9cm} \forall i \in N \forall r \in N \\
+    &x_{ij} ^r \in \{0,1\}\hspace{9cm} \forall (i,j) \in A, \forall r \in N
+\end{align}
+ La restricción (1) impone que cada ruta comience y termine en el depósito. La restricción (2) impone que la primera ruta empiece en el depósito y debe existir. La restricción (3) impone que la ruta $r+1$ no puede existir si no existe la ruta $r$. La restricción (4) impone que cada nodo sea visitado exactamente una vez. La restricción (5) impone que en una ruta $r$, el vehículo puede salir del cliente $j$ solo si ha entrado previamente. La restricción (6) impone que la cantidad de dinero inicial de cada vehículo es 0. Las restricciones (7) y (8) imponen que el dinero no supere la capacidad del vehículo. 
+ La restricción (9) impone que la cantidad de riesgo inicial de cada vehículo es 0. Las restricciones (10) y (11) imponen que el riesgo no supere el máximo dado. 
+
+\section{Conclusiones}
+El problema VRP es un problema extremadamente estudiado, y cuenta con una gran cantidad de variantes. Las técnicas expuestas resuelven la variación de RCVRP, pero con ciertas diferencias puntuales a la hora de definir restricciones. Todas estas técnicas están limitadas por el hecho de que RCVRP es un problema NP-hard, por lo que se tienen heurísticas y metaheurísticas en lugar de técnicas que tengan la solución óptima. \\Como perspectiva de futuras investigaciones, sería interesante considerar tanto el enfoque en variantes aún más específicas del problema como el desarrollo de una solución general efectiva. Las variantes más específicas podrían acercarse más a situaciones del mundo real, mientras que una solución general sería valiosa para analizar múltiples variantes de manera holística. En este contexto, trabajar con algoritmos aproximados se presenta como una estrategia adecuada dada la naturaleza desafiante del problema.
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{Referencias}
+\end{document} 

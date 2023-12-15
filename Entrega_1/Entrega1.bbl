@@ -1,0 +1,83 @@
+\begin{thebibliography}{10}
+
+\bibitem{hepenstal2010concentration}
+Sam Hepenstal and Shane~D Johnson.
+\newblock The concentration of cash-in-transit robbery.
+\newblock {\em Crime Prevention and Community Safety}, 12:263--282, 2010.
+
+\bibitem{thobane2014criminal}
+Mahlogonolo~Stephina Thobane.
+\newblock {\em The criminal career of armed robbers with specific reference to cash-in-transit robberies}.
+\newblock PhD thesis, University of South Africa, 2014.
+
+\bibitem{talarico2015metaheuristics}
+Luca Talarico, Kenneth S{\"o}rensen, and Johan Springael.
+\newblock Metaheuristics for the risk-constrained cash-in-transit vehicle routing problem.
+\newblock {\em European Journal of operational research}, 244:457--470, 2015.
+
+\bibitem{toth2002overview}
+Paolo Toth and Daniele Vigo.
+\newblock An overview of vehicle routing problems.
+\newblock {\em The vehicle routing problem}, pages 1--26, 2002.
+
+\bibitem{joetschalckx1989vehicle}
+Marc Goetschalckx and Charlotte Jacobs-Blecha.
+\newblock The vehicle routing problem with backhauls.
+\newblock {\em European Journal of Operational Research}, 42:39--51, 1989.
+
+\bibitem{ombuki2006multi}
+Beatrice Ombuki, Brian~J Ross, and Franklin Hanshar.
+\newblock Multi-objective genetic algorithms for vehicle routing problem with time windows.
+\newblock {\em Applied Intelligence}, 24:17--30, 2006.
+
+\bibitem{talarico2013risk}
+L~Talarico, K~S{\"o}rensen, and J~Springael.
+\newblock The risk-constrained cash-in-transit vehicle routing problem with time window constraints.
+\newblock In {\em 14th Workshop of the EURO Working Group}, pages 104--109, 2013.
+
+\bibitem{lenstra1981complexity}
+Jan~Karel Lenstra and AHG~Rinnooy Kan.
+\newblock Complexity of vehicle routing and scheduling problems.
+\newblock {\em Networks}, 11:221--227, 1981.
+
+\bibitem{braekers2016vehicle}
+Kris Braekers, Katrien Ramaekers, and Inneke Van~Nieuwenhuyse.
+\newblock The vehicle routing problem: State of the art classification and review.
+\newblock {\em Computers \& industrial engineering}, 99:300--313, 2016.
+
+\bibitem{dantzig1959truck}
+George~B Dantzig and John~H Ramser.
+\newblock The truck dispatching problem.
+\newblock {\em Management science}, 6:80--91, 1959.
+
+\bibitem{braysy2004evolutionary}
+Olli Br{\"a}ysy, Wout Dullaert, and Michel Gendreau.
+\newblock Evolutionary algorithms for the vehicle routing problem with time windows.
+\newblock {\em Journal of Heuristics}, 10:587--611, 2004.
+
+\bibitem{yan2012model}
+Shangyao Yan, Sin-Siang Wang, and Ming-Wei Wu.
+\newblock A model with a solution algorithm for the cash transportation vehicle routing and scheduling problem.
+\newblock {\em Computers \& Industrial Engineering}, 63:464--473, 2012.
+
+\bibitem{ge2023genetic}
+Xianlong Ge, Yuanzhi Jin, and Long Zhang.
+\newblock Genetic-based algorithms for cash-in-transit multi depot vehicle routing problems: economic and environmental optimization.
+\newblock {\em Environment, Development and Sustainability}, 25:557--586, 2023.
+
+\bibitem{xu2022model}
+Guoxun Xu, Ting Xiang, Yanfeng Li, and Jun Li.
+\newblock A model with an efficient tabu search for the cash pickup and delivery problem.
+\newblock {\em International Journal of Shipping and Transport Logistics}, 15:71--90, 2022.
+
+\bibitem{talarico2017large}
+Luca Talarico, Johan Springael, Kenneth S{\"o}rensen, and Fabio Talarico.
+\newblock A large neighbourhood metaheuristic for the risk-constrained cash-in-transit vehicle routing problem.
+\newblock {\em Computers \& Operations Research}, 78:547--556, 2017.
+
+\bibitem{helsgaun2000effective}
+Keld Helsgaun.
+\newblock An effective implementation of the lin--kernighan traveling salesman heuristic.
+\newblock {\em European journal of operational research}, 126:106--130, 2000.
+
+\end{thebibliography}
